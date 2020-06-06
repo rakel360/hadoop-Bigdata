@@ -97,8 +97,8 @@ ADD src $HOME/src
 RUN mvn package
 
 FROM HADOOP
-COPY --from=BUILD_ENV /tmp/target/hadoop-1.0-jar-with-dependencies.jar /usr/local/hadoop
-#COPY out/artifacts/wordcount_jar/wordcount.jar /usr/local/hadoop
+COPY --from=BUILD_ENV /tmp/target/aid-1.0-SNAPSHOT-jar-with-dependencies.jar $HADOOP_HOME/word-count.jar
+
 # Clean up
 RUN mkdir -p /input
 RUN rm -rf /input/* && rm -rf /output
