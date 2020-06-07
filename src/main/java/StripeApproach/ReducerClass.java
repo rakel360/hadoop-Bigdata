@@ -39,6 +39,7 @@ public class ReducerClass extends Reducer<Text, CustomMapWritable, Text, CustomM
         for (Map.Entry e: common.entrySet()) {
             String v = (String) e.getKey();
             Integer vVal = (Integer) e.getValue();
+
             stripe.put(new Text(v), new Text(vVal + "/" + sum));
         }
         logger.info("(" + key + ", " + stripe + ")");
