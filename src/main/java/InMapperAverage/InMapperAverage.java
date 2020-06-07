@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Average.Average;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.conf.*;
 import org.apache.hadoop.io.*;
@@ -103,11 +104,10 @@ public class InMapperAverage extends Configured implements Tool {
     }
 
     public int run(String[] args) throws Exception {
-        Configuration conf = new Configuration();
 
-        @SuppressWarnings("deprecation")
-        Job job = new Job(conf, "InMapperAverage");
+        Job job = new Job(getConf());
         job.setJarByClass(InMapperAverage.class);
+        job.setJobName(jobName);
 
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(Pair.class);
